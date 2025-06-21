@@ -1,4 +1,3 @@
-
 import { Layout } from '@/components/layout/Layout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -19,9 +18,9 @@ const Stock = () => {
 
   const getStockStatus = (product: any) => {
     if (product.currentStock <= product.minStock) {
-      return { status: 'low', color: 'destructive', icon: AlertTriangle };
+      return { status: 'low', variant: 'destructive' as const, icon: AlertTriangle };
     }
-    return { status: 'normal', color: 'secondary', icon: Package };
+    return { status: 'normal', variant: 'secondary' as const, icon: Package };
   };
 
   const lowStockProducts = products.filter(p => p.currentStock <= p.minStock);
@@ -98,7 +97,7 @@ const Stock = () => {
                         {product.currentStock} {product.unit}
                       </span>
                     </div>
-                    <Badge variant={stockStatus.color}>
+                    <Badge variant={stockStatus.variant}>
                       {stockStatus.status === 'low' ? 'Estoque Baixo' : 'Normal'}
                     </Badge>
                   </div>
